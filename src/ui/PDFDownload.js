@@ -4,10 +4,7 @@ import styled from "styled-components";
 import { H4 } from "../typography";
 import PropTypes from "prop-types";
 
-const PDFImage = styled.img`
-  margin-bottom: -20px;
-  margin-top: 8px;
-`;
+const PDFImage = styled.img``;
 
 const JoomlaPdfIcon = styled.div`
   background: url("${({ icon }) => icon}") 0 center no-repeat;
@@ -18,10 +15,9 @@ const JoomlaPdfIcon = styled.div`
   background-origin: padding-box;
   background-position-x: 0px;
   background-position-y: 50%;
-  background-size : auto;
+  background-size: auto;
   color: rgb(31, 62, 79);
   display: block;
-  font-family: Montserrat, Helvetica, Arial, sans-serif;
   font-size: 16px;
   height: 16px;
   line-height: 16px;
@@ -37,24 +33,6 @@ const JoomlaPdfIcon = styled.div`
 `;
 
 const JoomlaPdfLink = styled.div`
-  border-bottom-color: rgba(0, 0, 0, 0) transparent;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  border-image-slice: 100%;
-  border-image-source: none;
-  border-image-width: 1;
-  border-left-color: rgba(0, 0, 0, 0);
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-right-color: rgba(0, 0, 0, 0);
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-top-color: rgba(0, 0, 0, 0);
-  border-top-style: solid;
-  border-top-width: 1px;
-  color: rgb(31, 62, 79);
   display: block;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -72,6 +50,7 @@ const JoomlaPdfLink = styled.div`
 `;
 
 const JoomlaAnchor = styled.a`
+  color: rgb(56, 181, 230);
   cursor: pointer;
   display: inline;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
@@ -86,11 +65,16 @@ const JoomlaAnchor = styled.a`
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
-  text-decoration-color: rgb(132, 196, 71);
+  text-decoration-color: rgb(56, 181, 230);
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-thickness: auto;
   text-size-adjust: 100%;
+  transition: all 0.3s ease;
+  :hover {
+    color: rgb(132, 196, 71);
+    text-decoration-color: rgb(132, 196, 71);
+  }
 `;
 
 const DipraPdf = ({ image, title, link, heading, icon }) => {
@@ -104,14 +88,16 @@ const DipraPdf = ({ image, title, link, heading, icon }) => {
                 <H4>{heading}</H4>
               </Col>
             ) : null}
-            <Col>
-              <a href={link} target="_self">
-                <PDFImage src={image} alt={"PDF Download of " + title} />
-              </a>
-            </Col>
+            {image ? (
+              <Col>
+                <a href={link} target="_self">
+                  <PDFImage src={image} alt={"PDF Download of " + title} />
+                </a>
+              </Col>
+            ) : null}
             <Col>
               <JoomlaPdfLink>
-                <JoomlaPdfIcon>
+                <JoomlaPdfIcon icon={icon}>
                   <JoomlaAnchor href={link} target="_self">
                     {title}
                   </JoomlaAnchor>
